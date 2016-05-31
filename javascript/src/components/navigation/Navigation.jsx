@@ -25,13 +25,13 @@ var Navigation = React.createClass({
     },
 
     render() {
-        var logoUrl = jsRoutes.controllers.Assets.at("images/toplogo.png").url;
-        var homeUrl = jsRoutes.controllers.StartpageController.redirect().url;
-        var brand = (<a href={homeUrl}>
-            <img src={logoUrl}/>
-        </a>);
+        //var logoUrl = jsRoutes.controllers.Assets.at("images/toplogo.png").url;
+        //var homeUrl = jsRoutes.controllers.StartpageController.redirect().url;
+        //var brand = (<a href={homeUrl}>
+        //   <img src={logoUrl}/>
+        //</a>);
         return (
-            <Navbar brand={brand} inverse fluid fixedTop toggleNavKey={0}>
+            <Navbar inverse fluid fixedTop toggleNavKey={0}>
                 <CollapsibleNav eventKey={0}>
                     <Nav navbar>
                         {this._isPermitted(['SEARCHES_ABSOLUTE', 'SEARCHES_RELATIVE', 'SEARCHES_KEYWORD']) &&
@@ -41,8 +41,6 @@ var Navigation = React.createClass({
                         <NavItem href={jsRoutes.controllers.StreamsController.index().url}
                                  active={this._isActive("/streams")}>Streams</NavItem>
 
-                        <NavItem href={jsRoutes.controllers.DashboardsController.index().url}
-                                 active={this._isActive("/dashboards")}>Dashboards</NavItem>
 
                         {this.state.permissions['SOURCES_READ'] &&
                             <NavItem href={jsRoutes.controllers.SourcesController.list().url}
@@ -60,6 +58,7 @@ var Navigation = React.createClass({
                             { this._isPermitted(['ROLES_EDIT']) && <MenuItem href={jsRoutes.controllers.UsersController.rolesPage().url}>Roles</MenuItem> }
                             { this._isPermitted(['DASHBOARDS_CREATE', 'INPUTS_CREATE', 'STREAMS_CREATE']) && <MenuItem href={jsRoutes.controllers.BundlesController.index().url}>Content Packs</MenuItem> }
                             { this._isPermitted(['INPUTS_EDIT']) && <MenuItem href={jsRoutes.controllers.GrokPatternsController.index().url}>Grok Patterns</MenuItem> }
+                            { this._isPermitted(['INPUTS_EDIT']) && <MenuItem href={jsRoutes.controllers.LookupFilterController.index().url}>Lookup Filter</MenuItem> }
                         </DropdownButton>
                     </Nav>
 
@@ -73,7 +72,7 @@ var Navigation = React.createClass({
                         <NavItem href={jsRoutes.controllers.NodesController.nodes().url}>
                             <GlobalThroughput />
                         </NavItem>
-                        <UserMenu fullName={this.props.fullName} loginName={this.props.loginName}/>
+
                     </Nav>
                 </CollapsibleNav>
             </Navbar>
@@ -119,6 +118,9 @@ var Navigation = React.createClass({
         }
         if (this._isActive("/system/collectors")) {
             suffix = " / Collectors";
+        }
+        if (this._isActive("/system/lookupfilter")) {
+            suffix = " / Lookup Filter";
         }
 
         return "System" + suffix;

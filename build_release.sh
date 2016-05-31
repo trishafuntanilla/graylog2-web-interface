@@ -36,7 +36,8 @@ echo -n "Using npm "
 ./node_modules/.bin/npm --version
 
 ./node_modules/.bin/npm install --no-spin
-./node_modules/.bin/npm test
+echo "skipping tests"
+#./node_modules/.bin/npm test
 ./node_modules/.bin/npm run build
 popd
 
@@ -52,12 +53,12 @@ popd
 "${SBT_BIN}" universal:package-zip-tarball
 
 date
-echo "Your package(s) are ready in 'target/universal':"
+echo "Your packages are ready in target/universal:"
 echo
 ls -lt ./target/universal/graylog-web-interface-*.tgz
 
 echo
-echo '# Calculating artifact checksums'
+echo "# Calculating artifact checksums"
 pushd ./target/universal
 for ARTIFACT in graylog-web-interface-*.tgz
 do
@@ -72,4 +73,4 @@ done
 popd
 
 echo
-echo '# BUILD COMPLETE'
+echo "# BUILD COMPLETE"

@@ -13,6 +13,7 @@ $(document).ready(() => {
     require('./components/dashboard/mount');
     require('./components/extractors/mount');
     require('./components/grok-patterns/mount');
+    require('./components/lookup/mount');
     require('./components/widgets/mount');
     require('./components/throughput/mount');
     require('./components/streams/mount');

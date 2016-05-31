@@ -20,10 +20,11 @@ object ApplicationBuild extends Build {
     "org.apache.shiro" % "shiro-core" % "1.2.2",
     "com.google.inject" % "guice" % "4.0",
     "com.google.inject.extensions" % "guice-assistedinject" % "4.0",
+    "com.google.code.gson" % "gson" % "2.6.2",
     "javax.inject" % "javax.inject" % "1",
     "org.graylog2" % "play2-graylog2_2.10" % "1.2.1",
     "org.graylog2" % "graylog2-rest-client" % appVersion,
-
+    "org.mongodb" % "mongo-java-driver" % "3.2.2",
     "com.github.fdimuccio" %% "play2-sockjs" % "0.3.1",
 
     "junit" % "junit" % "4.12" % "test",

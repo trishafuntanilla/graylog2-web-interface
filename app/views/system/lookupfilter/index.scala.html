@@ -1,0 +1,8 @@
+@(currentUser: org.graylog2.restclient.models.User,
+	breadcrumbs: lib.BreadcrumbList)
+
+@main("Lookup Filter", null, "", currentUser, false) {
+    @views.html.partials.breadcrumbs(breadcrumbs)
+
+    <div id="react-lookup-filter"></div>
+}

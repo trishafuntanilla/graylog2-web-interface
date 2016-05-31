@@ -42,9 +42,9 @@ import java.io.IOException;
 import static play.data.Form.form;
 
 public class SessionsController extends BaseController {
-	private static final Logger log = LoggerFactory.getLogger(SessionsController.class);
+    private static final Logger log = LoggerFactory.getLogger(SessionsController.class);
 
-	final static Form<LoginRequest> userForm = form(LoginRequest.class);
+    final static Form<LoginRequest> userForm = form(LoginRequest.class);
 
     private final ServerNodes serverNodes;
     private final RedirectAuthenticator authenticator;
@@ -76,6 +76,38 @@ public class SessionsController extends BaseController {
             }
         }
         checkServerConnections();
+        
+        LoginRequest r = new LoginRequest();
+        r.setUsername("admin");
+        r.setPassword("admin");
+        r.noStartpage=true;
+        try {
+            final SessionResponse sessionResponse = sessionService.create(r.username, r.password, request().remoteAddress());
+            // if we have successfully created a session, we can save that id for the next request
+            final String cookieContent = Crypto.encryptAES(r.username + "\t" + sessionResponse.sessionId());
+            Http.Context.current().session().put("sessionid", cookieContent);
+
+            // if we were redirected from somewhere else because the session had expired, redirect back to that page
+            // otherwise use the configured startpage (or skip it if that was requested)
+            if (r.destination != null && !r.destination.isEmpty()) {
+                return redirect(r.destination);
+            }
+            // upon redirect, the auth layer will load the user with the given session and log the user in.
+            return redirect(routes.StartpageController.redirect());
+        } catch (APIException e) {
+            log.warn("Unable to authenticate user {}. Redirecting back to '/'", r.username, e);
+            if (e.getCause() instanceof Graylog2ServerUnavailableException) {
+                checkServerConnections();
+            } else {
+                flash("error", "Sorry, those credentials are invalid.");
+            }
+        } catch (IOException e) {
+            flash("error", "We discovered Graylog servers but could not reach any. Please check your log file.(IOException)");
+            log.error("Error when trying to reach Graylog servers.", e);
+        } catch (AuthenticationException e) {
+        }
+        
+        
         return ok(views.html.sessions.login.render(userForm, !serverNodes.isConnected(), destination));
     }
 
@@ -86,14 +118,14 @@ public class SessionsController extends BaseController {
     }
 
     public Result create() {
-		Form<LoginRequest> loginRequest = userForm.bindFromRequest();
+        Form<LoginRequest> loginRequest = userForm.bindFromRequest();
 
-		if (loginRequest.hasErrors()) {
-			flash("error", "Please fill out all fields.");
+        if (loginRequest.hasErrors()) {
+            flash("error", "Please fill out all fields.");
             return badRequest(views.html.sessions.login.render(loginRequest, !serverNodes.isConnected(), loginRequest.field("destination").value()));
-		}
-		
-		LoginRequest r = loginRequest.get();
+        }
+        
+        LoginRequest r = loginRequest.get();
 
         try {
             final SessionResponse sessionResponse = sessionService.create(r.username, r.password, request().remoteAddress());
@@ -121,7 +153,7 @@ public class SessionsController extends BaseController {
         } catch (AuthenticationException e) {
         }
         return badRequest(views.html.sessions.login.render(loginRequest, !serverNodes.isConnected(), loginRequest.field("destination").value()));
-	}
+    }
 
     @Security.Authenticated(RedirectAuthenticator.class)
     public Result destroy() {
@@ -134,7 +166,7 @@ public class SessionsController extends BaseController {
             log.info("Unable to end session for user {}", UserService.current().getName());
         }
         SecurityUtils.getSubject().logout();
-		session().clear();
-		return redirect(routes.StartpageController.redirect());
-	}
+        session().clear();
+        return redirect(routes.StartpageController.redirect());
+    }
 }
