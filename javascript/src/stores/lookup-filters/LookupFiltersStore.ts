@@ -39,7 +39,7 @@ var LookupFiltersStore = {
             data: JSON.stringify(filter)
         }).done(() => {
             callback();
-            var message = "Filter was successfully deleted.";
+            var message = "Filter was successfully deleted. NOTE: Lookup will not reflect the changes until the next auto sync up (every 4 hours). RESTART Graylog if you want your changes to be applied immediately.";
             UserNotification.success(message);
         }).fail(failCallback);
     }

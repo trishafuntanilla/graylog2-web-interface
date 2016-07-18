@@ -14,6 +14,10 @@ var NewLookupFilterModal = React.createClass({
         var sampleJSON = '{\n    "key" : "value",\n    "..." : "..."\n}';
         var body = (
             <div>
+            <div className="alert alert-warning">
+              <strong>NOTE:</strong> Lookup will not reflect the changes until the next auto sync up (every 4 hours). RESTART Graylog if you want your changes to be applied immediately.
+            </div>
+            <br/>
                 <div className="form-group">
                     <label htmlFor="existing-field">Name of existing field: </label>
                     <input className="form-control" id="existing-field" name="existing-field" type="text" required/>

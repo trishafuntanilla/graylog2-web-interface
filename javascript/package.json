@@ -48,7 +48,6 @@
     "karma-jasmine": "*",
     "karma-phantomjs-launcher": "*",
     "karma-webpack": "*",
-    "phantomjs": ">=1.9",
     "react-hot-loader": "^1.2.8",
     "typescript": "^1.5.3",
     "webpack": "^1.10.5",
