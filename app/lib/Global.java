@@ -114,16 +114,16 @@ public class Global extends GlobalSettings {
         }
 
         mongoHost = app.configuration().getString("mongodb_host");
-        if (mongoHost.isEmpty()) {
-            log.error("Please set the MongoDB host (mongodb_host) that the graylog server uses.");
-            throw new IllegalStateException("mongodb_host is empty");
-        }
+        // if (mongoHost.isEmpty()) {
+        //     log.error("Please set the MongoDB host (mongodb_host) that the graylog server uses.");
+        //     throw new IllegalStateException("mongodb_host is empty");
+        // }
 
         mongoDatabase = app.configuration().getString("mongodb_dbname");
-        if (mongoDatabase.isEmpty()) {
-            log.error("Please set the MongoDB database name (mongodb_dbname) that the graylog server uses.");
-            throw new IllegalStateException("mongodb_dbname is empty");
-        }
+        // if (mongoDatabase.isEmpty()) {
+        //     log.error("Please set the MongoDB database name (mongodb_dbname) that the graylog server uses.");
+        //     throw new IllegalStateException("mongodb_dbname is empty");
+        // }
         
         final String[] uris = graylog2ServerUris.split(",");
         if (uris.length == 0) {

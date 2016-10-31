@@ -147,25 +147,7 @@ var SearchResult = React.createClass({
                                 <ModalTrigger key="debugQuery" modal={<ShowQueryModal builtQuery={this.props.builtQuery} />}>
                                     <a href="#" onClick={(e) => e.preventDefault()}>Show the Elasticsearch query.</a>
                                 </ModalTrigger>
-                                <strong>&nbsp;Take a look at the&nbsp;<DocumentationLink page={DocsHelper.PAGES.SEARCH_QUERY_LANGUAGE} text="documentation"/>
-                                    &nbsp;if you need help with the search syntax.</strong>
                             </p>
-                        </div>
-                    </div>
-                    <div className="row content">
-                        <div className="col-md-12">
-                            <div className="support-sources">
-                                <h2>Need help?</h2>
-                                Do not hesitate to consult the Graylog community if your questions are not answered in the&nbsp;
-                                <DocumentationLink page={DocsHelper.PAGES.WELCOME} text="documentation"/>.
-
-                                <ul>
-                                    <li><i className="fa fa-group"></i> <a href="https://www.graylog.org/community-support/" target="_blank">Forum / Mailing list</a></li>
-                                    <li><i className="fa fa-github-alt"></i> <a href="https://github.com/Graylog2/graylog2-web-interface/issues" target="_blank">Issue tracker</a></li>
-                                    <li><i className="fa fa-heart"></i> <a href="https://www.graylog.com/support/" target="_blank">Commercial support</a></li>
-                                </ul>
-                            </div>
-
                         </div>
                     </div>
                 </div>);

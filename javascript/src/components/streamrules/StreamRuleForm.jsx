@@ -81,16 +81,8 @@ var StreamRuleForm = React.createClass({
                         <div className="well well-sm matcher-github">
                             The server will try to convert to strings or numbers based on the matcher type as good as it
                             can.
-
                             <br /><br />
-                            <i className="fa fa-github"></i>
-                            <a href={"https://github.com/Graylog2/graylog2-server/tree/" + Version.getMajorAndMinorVersion() + "/graylog2-server/src/main/java/org/graylog2/streams/matchers"}
-                               target="_blank"> Take a look at the matcher code on GitHub
-                            </a>
-                            <br /><br />
-                            Regular expressions use Java syntax. <DocumentationLink page={DocsHelper.PAGES.STREAMS}
-                                                                                    title="More information"
-                                                                                    text={<i className="fa fa-lightbulb-o"></i>}/>
+                            Regular expressions use Java syntax.
                         </div>
                     </Col>
                 </div>

@@ -56,16 +56,12 @@ var StreamComponent = React.createClass({
                         matches all rules of a stream it is routed into it. A message can be routed into
                         multiple
                         streams. You can for example create a stream that contains all SSH logins and configure
-                        to be alerted whenever there are more logins than usual.
-
-                        Read more about streams in the <DocumentationLink page={DocsHelper.PAGES.STREAMS} text="documentation"/>.
+                        to be alerted whenever there are more logins than usual.    
                     </p>
 
-                    <SupportLink>
-                        Take a look at the
-                        {' '}<DocumentationLink page={DocsHelper.PAGES.EXTERNAL_DASHBOARDS} text="Graylog stream dashboards"/>{' '}
-                        for wall-mounted displays or other integrations.
-                    </SupportLink>
+
+
+                    <div><br/></div>
                 </Col>
                 {this.state.streams && this.state.streamRuleTypes &&
                     <Col md={2} style={{textAlign: 'center', marginTop: '35px'}}>{createStreamButton}</Col>}

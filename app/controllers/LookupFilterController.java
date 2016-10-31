@@ -92,6 +92,9 @@ public class LookupFilterController extends AuthenticatedController {
 
             updateLookupMongoCollection(obj.toString(), key, value);
 
+            // TODO
+            // Rest call to reload lookup map
+
         }
 
         return redirect(path);

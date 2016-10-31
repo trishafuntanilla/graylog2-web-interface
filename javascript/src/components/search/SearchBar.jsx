@@ -97,9 +97,6 @@ const SearchBar = React.createClass({
 
                 <div id="search-container">
                   <div className="pull-right search-help">
-                    <DocumentationLink page={DocsHelper.PAGES.SEARCH_QUERY_LANGUAGE}
-                                       title="Search query syntax documentation"
-                                       text={<i className="fa fa-lightbulb-o"></i>}/>
                   </div>
 
                   <Button type="submit" bsStyle="success" className="pull-left">
