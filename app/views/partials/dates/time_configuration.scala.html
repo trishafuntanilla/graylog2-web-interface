@@ -6,7 +6,7 @@
 
 <p class="description">
     Dealing with timezones can be confusing. Here you can see the timezone applied to different components of your system.
-    You can check timezone settings of specific graylog-server nodes on their respective detail page.
+    You can check timezone settings of specific nodes on their respective detail page.
 </p>
 
 <dl class="system-time">
@@ -18,6 +18,6 @@
     <dd>@DateHelper.timestampShortTZ(DateTime.now(DateTimeZone.getDefault()), false)</dd>
     <dt>Web interface configuration:</dt>
     <dd>@DateHelper.timestampShortTZ(DateTime.now(DateTools.getApplicationTimeZone()), false)</dd>
-    <dt>Graylog master server:</dt>
+    <dt>Master server:</dt>
     <dd>@if(masterTimezone.equals("")) {Graylog master server currently unavailable} else {@DateHelper.timestampShortTZ(DateTime.now(DateTimeZone.forID(masterTimezone)), false)}</dd>
 </dl>

@@ -13,7 +13,7 @@
         <div class="col-md-10">
             <h1>Node @node.getHostname / @node.getShortNodeId</h1>
 
-            <p class="description">This page shows details of a Graylog server node that is active and reachable in your cluster.</p>
+            <div><br /></div>
 
             @if(node.isMaster) {
                 @views.html.partials.support.list_small() {
@@ -36,12 +36,6 @@
                     @if(isPermitted(LOGGERS_READ)) {
                         <li><a href="@routes.LoggingController.index()">Configure internal logging</a></li>
                     }
-                    <li>
-                        <a href="@node.getTransportAddress/api-browser" target="_blank">
-                            API Browser
-                            <i class="fa fa-external-link" style="font-size: 11px;"></i>
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -52,8 +46,6 @@
             <div class="alert alert-info">
                 <i class="fa fa-retweet"></i> &nbsp; Lifecycle state:
                 <strong>@node.getLifecycle</strong>
-
-                <span class="pull-right">@views.html.partials.links.docs(DocsHelper.PAGE_LOAD_BALANCERS, "What does this mean?")</span>
             </div>
         </div>
 
@@ -61,14 +53,10 @@
             @if(node.lbAlive()) {
                 <div class="alert alert-success">
                     <i class="fa fa-heart"></i> &nbsp; Marked as <strong>ALIVE</strong> for load balancers.
-
-                    <span class="pull-right">@views.html.partials.links.docs(DocsHelper.PAGE_LOAD_BALANCERS, "What does this mean?")</span>
                 </div>
             } else {
                 <div class="alert alert-danger">
                     <i class="fa fa-heart"></i> &nbsp; Marked as <strong>DEAD</strong> for load balancers.
-
-                    <span class="pull-right">@views.html.partials.links.docs(DocsHelper.PAGE_LOAD_BALANCERS, "What does this mean?")</span>
                 </div>
             }
         </div>
